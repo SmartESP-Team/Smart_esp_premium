@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart ESP Premium - VIP Access</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .envelope {
+            transition: all 0.5s ease;
+            perspective: 1000px;
+        }
+        
+        .envelope.open .flip-inner {
+            transform: rotateX(180deg);
+        }
+        
+        .flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+        }
+        
+        .flip-front, .flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+        
+        .flip-back {
+            transform: rotateX(180deg);
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .countdown {
+            font-feature-settings: "tnum";
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-xl font-bold text-blue-800">Smart ESP <span class="text-blue-600">Premium</span></span>
+                </div>
+                <div class="ml-4">
+                    <button id="language-toggle" class="flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                        <i id="lang-flag" class="fas fa-flag-usa mr-1"></i>
+                        <span id="lang-text">EN</span>
+                    </button>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-4">
+                        <a href="#features" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-600" data-translate="navFeatures">Features</a>
+                        <a href="#offer" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-600" data-translate="navOffer">VIP Offer</a>
+                        <a href="#download" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-600" data-translate="navDownload">Download</a>
+                        <a href="mailto:smartespservices@gmail.com" class="ml-4 px-4 py-2 rounded-md text-sm font-medium text-white bg-blue-600 hover:bg-blue-700" data-translate="navContact">Contact</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600" data-translate="navFeatures">Features</a>
+                <a href="#offer" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600" data-translate="navOffer">VIP Offer</a>
+                <a href="#download" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600" data-translate="navDownload">Download</a>
+                <a href="mailto:smartespservices@gmail.com" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700" data-translate="navContact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="md:flex items-center justify-between">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4" data-translate="heroTitle">Welcome to <span class="text-blue-300">Smart ESP Premium</span></h1>
+                    <p class="text-xl md:text-2xl text-blue-100 mb-8" data-translate="heroSubtitle">The elite IoT development platform — now offering VIP access to the first innovators.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#download" class="px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-lg text-lg font-semibold text-white text-center shadow-lg transform transition hover:scale-105" data-translate="heroCTA1">
+                            Get VIP Access
+                        </a>
+                        <a href="#features" class="px-8 py-4 bg-transparent border-2 border-blue-400 hover:bg-blue-900/30 rounded-lg text-lg font-semibold text-blue-100 text-center transition" data-translate="heroCTA2">
+                            Explore Features
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <div class="relative max-w-md mx-auto">
+                        <div class="absolute -inset-5">
+                            <div class="w-full h-full max-w-sm mx-auto lg:mx-0 opacity-30 blur-lg bg-gradient-to-r from-blue-400 to-blue-600"></div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Smart ESP Premium Interface" class="relative rounded-xl shadow-2xl w-full border border-blue-300/20">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-translate="featuresTitle">More than an app. It's your AI-powered IoT command center.</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-translate="featuresSubtitle">Smart ESP Premium gives you exclusive tools to build, monitor, and automate like never before.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-white rounded-xl p-8 shadow-lg border border-gray-100 transition duration-300">
+                    <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-brain text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3" data-translate="featureAI">Gemini AI Integration</h3>
+                    <p class="text-gray-600" data-translate="featureAIDesc">Instant code generation for 100+ components with AI-powered suggestions tailored to your project.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card bg-white rounded-xl p-8 shadow-lg border border-gray-100 transition duration-300">
+                    <div class="w-14 h-14 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-table text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3" data-translate="featureSheets">Real-Time Google Sheets Sync</h3>
+                    <p class="text-gray-600" data-translate="featureSheetsDesc">No coding needed for data logging. Your sensor data appears in Sheets automatically.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card bg-white rounded-xl p-8 shadow-lg border border-gray-100 transition duration-300">
+                    <div class="w-14 h-14 bg-red-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-envelope text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3" data-translate="featureGmail">Automated Gmail Alerts</h3>
+                    <p class="text-gray-600" data-translate="featureGmailDesc">Get notified instantly when your sensors trigger specific conditions you define.</p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-card bg-white rounded-xl p-8 shadow-lg border border-gray-100 transition duration-300">
+                    <div class="w-14 h-14 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fab fa-whatsapp text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3" data-translate="featureWhatsApp">WhatsApp & Cloud Integration</h3>
+                    <p class="text-gray-600" data-translate="featureWhatsAppDesc">Share data with your team or clients with one tap through WhatsApp or cloud services.</p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="feature-card bg-white rounded-xl p-8 shadow-lg border border-gray-100 transition duration-300">
+                    <div class="w-14 h-14 bg-yellow-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3" data-translate="featureLibrary">Exclusive Components Library</h3>
+                    <p class="text-gray-600" data-translate="featureLibraryDesc">Access advanced sensors, actuators, and modules not available in the free version.</p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="feature-card bg-white rounded-xl p-8 shadow-lg border border-gray-100 transition duration-300">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-tools text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3" data-translate="featureLibraries">Free Utility Libraries</h3>
+                    <p class="text-gray-600" data-translate="featureLibrariesDesc">Premium libraries for ESP32 & ESP8266 included with your VIP access.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Video Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-translate="videoTitle">See Smart ESP Premium in Action</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-translate="videoSubtitle">Watch how our VIP members are transforming their IoT projects</p>
+            </div>
+            
+            <div class="aspect-w-16 aspect-h-9 w-full max-w-4xl mx-auto bg-black rounded-xl overflow-hidden shadow-2xl">
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/9jcOBSLE75o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIP Offer Section -->
+    <section id="offer" class="py-20 px-4 sm:px-6 lg:px-8 gradient-bg text-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-translate="offerTitle">You're Among the First. Claim Your VIP Status.</h2>
+                <p class="text-xl text-blue-100 max-w-3xl mx-auto" data-translate="offerSubtitle">Smart ESP Premium is normally $2/month. But for the first innovators, we're offering lifetime VIP access — completely free.</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
+                    <div class="bg-blue-900/30 border border-blue-400/30 rounded-xl p-8 backdrop-blur-sm">
+                        <h3 class="text-2xl font-bold mb-4" data-translate="offerIncluded">What's Included in VIP Access:</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-300 mt-1 mr-3"></i>
+                                <span data-translate="offerItem1">Lifetime access to Smart ESP Premium (normally $2/month)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-300 mt-1 mr-3"></i>
+                                <span data-translate="offerItem2">Exclusive ESP32 & ESP8266 utility libraries</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-300 mt-1 mr-3"></i>
+                                <span data-translate="offerItem3">Priority support and feature requests</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-300 mt-1 mr-3"></i>
+                                <span data-translate="offerItem4">Early access to new components and features</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-8 p-4 bg-blue-800/50 rounded-lg">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-blue-200" data-translate="offerRemaining">VIP Spots Remaining:</span>
+                                <span class="font-bold countdown" id="countdown">100</span>
+                            </div>
+                            <div class="w-full bg-blue-900 rounded-full h-2.5">
+                                <div class="bg-blue-400 h-2.5 rounded-full" style="width: 75%" id="progress-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+               
+                    
+                    <div class="text-center">
+                        <p class="text-blue-200 mb-6" data-translate="offerNote">All you need is a VIP access code. (We've sent you one.)</p>
+                        <a href="#download" class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-lg font-semibold text-white shadow-lg transform transition hover:scale-105" data-translate="offerCTA">
+                            Claim Your VIP Access Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-translate="testimonialsTitle">What Our VIP Members Say</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-translate="testimonialsSubtitle">Don't just take our word for it. Here's what our early adopters are saying.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-50 rounded-xl p-8 shadow-sm border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold mr-4">LK</div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Lina K.</h4>
+                            <p class="text-sm text-gray-500" data-translate="testimonialRole1">Robotics Student</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic" data-translate="testimonial1">"I thought IoT was complex — until I got my VIP access. This is next-level. The AI code generation saved me weeks of work on my smart home project."</p>
+                    <div class="mt-4 flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-50 rounded-xl p-8 shadow-sm border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-bold mr-4">DT</div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">David T.</h4>
+                            <p class="text-sm text-gray-500" data-translate="testimonialRole2">Engineer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic" data-translate="testimonial2">"The AI-generated code saved me 20 hours on my smart greenhouse project. The Google Sheets integration works flawlessly for data logging."</p>
+                    <div class="mt-4 flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-50 rounded-xl p-8 shadow-sm border border-gray-100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold mr-4">AS</div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Amir S.</h4>
+                            <p class="text-sm text-gray-500" data-translate="testimonialRole3">Maker & Educator</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic" data-translate="testimonial3">"Feels like I'm using a tool from the future. My students are blown away by what we can build with Smart ESP Premium. Worth every penny (even though I got VIP access free!)."</p>
+                    <div class="mt-4 flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="p-8 text-center">
+                <h2 class="text-3xl font-bold text-gray-900 mb-2" data-translate="downloadTitle">Enter Your VIP Access Code</h2>
+                <p class="text-gray-600 mb-8" data-translate="downloadSubtitle">Check your email or click the envelope above for your exclusive code.</p>
+                
+                <div class="max-w-md mx-auto">
+                    <div class="mb-4">
+                        <label for="vip-code" class="block text-sm font-medium text-gray-700 mb-1" data-translate="downloadLabel">VIP Code</label>
+                        <input type="text" id="vip-code" placeholder="e.g. PREM-XXXX-XXXX" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 font-mono text-center">
+                    </div>
+                    <button id="verify-btn" class="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition duration-300" data-translate="downloadBtn">
+                        Verify & Download
+                    </button>
+                    <p class="text-sm text-gray-500 mt-3">
+                        <span data-translate="downloadNoCode">Don't have a code?</span>
+                        <a href="mailto:smartespservices@gmail.com" class="text-blue-600 hover:underline"> Contact us</a>
+                        <span data-translate="downloadRequest"> to request an invitation.</span>
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Success Message (Hidden by default) -->
+            <div id="success-message" class="hidden p-8 bg-green-50 border-t border-green-200">
+                <div class="text-center">
+                    <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
+                        <i class="fas fa-check text-green-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2" data-translate="successTitle">VIP Access Granted!</h3>
+                    <p class="text-gray-600 mb-6" data-translate="successSubtitle">Thank you for being an early adopter. Here are your downloads:</p>
+                    
+                    <div class="space-y-3 max-w-md mx-auto">
+                        <a href="#" class="block px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition duration-300">
+                            <i class="fas fa-download mr-2"></i> <span data-translate="successApp">Smart ESP Premium (APK)</span>
+                        </a>
+                        <a href="#" class="block px-4 py-3 bg-gray-800 hover:bg-gray-900 text-white rounded-lg font-medium transition duration-300">
+                            <i class="fas fa-file-archive mr-2"></i> <span data-translate="successLib32">ESP32 Utility Library (ZIP)</span>
+                        </a>
+                        <a href="#" class="block px-4 py-3 bg-gray-800 hover:bg-gray-900 text-white rounded-lg font-medium transition duration-300">
+                            <i class="fas fa-file-archive mr-2"></i> <span data-translate="successLib8266">ESP8266 Utility Library (ZIP)</span>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-green-100 rounded-lg">
+                        <p class="text-sm text-green-800" data-translate="successBonus">Found this page through a friend? You both get a bonus library pack when they use your code.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Error Message (Hidden by default) -->
+            <div id="error-message" class="hidden p-8 bg-red-50 border-t border-red-200">
+                <div class="text-center">
+                    <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 mb-4">
+                        <i class="fas fa-times text-red-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2" data-translate="errorTitle">Invalid VIP Code</h3>
+                    <p class="text-gray-600 mb-4" data-translate="errorSubtitle">The code you entered is invalid or has expired.</p>
+                    <button id="try-again-btn" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg font-medium transition duration-300" data-translate="errorBtn">
+                        Try Again
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-4">Smart ESP Premium</h3>
+                    <p class="text-gray-400" data-translate="footerTagline">The elite IoT development platform for innovators and makers.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4" data-translate="footerProducts">Products</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white" data-translate="footerProduct1">Smart ESP Premium</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white" data-translate="footerProduct2">ESP32 Libraries</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white" data-translate="footerProduct3">ESP8266 Libraries</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4" data-translate="footerFeatures">Features</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white" data-translate="footerFeature1">Gemini AI Integration</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white" data-translate="footerFeature2">Google Sheets Sync</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white" data-translate="footerFeature3">Gmail Alerts</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white" data-translate="footerFeature4">WhatsApp Integration</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4" data-translate="footerSupport">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="mailto:smartespservices@gmail.com" class="text-gray-400 hover:text-white" data-translate="footerContact">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white" data-translate="footerFAQ">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white" data-translate="footerPrivacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-400 text-sm">© 2025 Smart ESP Premium. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-4 text-center md:text-left">
+                <p class="text-xs text-gray-500" data-translate="footerNote">Smart ESP Premium is normally $2/month. This VIP offer is limited to early adopters.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Envelope animation
+        function toggleEnvelope() {
+            const envelope = document.getElementById('envelope');
+            envelope.classList.toggle('open');
+        }
+
+        // VIP Code validation
+        const validCodes = [
+            'PREM-7X9A-K2LM',
+            'PREM-N3P8-QR4T',
+            'PREM-WY6B-VC9S',
+            'PREM-DK7M-F8XZ'
+        ];
+
+        document.getElementById('verify-btn').addEventListener('click', function() {
+            const codeInput = document.getElementById('vip-code').value.trim().toUpperCase();
+            
+            if (validCodes.includes(codeInput)) {
+                document.getElementById('success-message').classList.remove('hidden');
+                document.getElementById('error-message').classList.add('hidden');
+                
+                // Update countdown
+                const countdown = document.getElementById('countdown');
+                const current = parseInt(countdown.textContent);
+                if (current > 0) {
+                    countdown.textContent = current - 1;
+                    const progress = ((current - 1) / 100) * 100;
+                    document.getElementById('progress-bar').style.width = `${progress}%`;
+                }
+            } else {
+                document.getElementById('error-message').classList.remove('hidden');
+                document.getElementById('success-message').classList.add('hidden');
+            }
+        });
+
+        document.getElementById('try-again-btn').addEventListener('click', function() {
+            document.getElementById('error-message').classList.add('hidden');
+            document.getElementById('vip-code').value = '';
+            document.getElementById('vip-code').focus();
+        });
+
+        // Countdown timer simulation
+        function updateCountdown() {
+            const countdown = document.getElementById('countdown');
+            const current = parseInt(countdown.textContent);
+            if (current > 75) {
+                const newValue = current - 1;
+                countdown.textContent = newValue;
+                const progress = (newValue / 100) * 100;
+                document.getElementById('progress-bar').style.width = `${progress}%`;
+            }
+        }
+
+        // Update countdown every 30 seconds
+        setInterval(updateCountdown, 30000);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Language translations
+        const translations = {
+            en: {
+                navFeatures: "Features",
+                navOffer: "VIP Offer",
+                navDownload: "Download",
+                navContact: "Contact",
+                heroTitle: "Welcome to Smart ESP Premium",
+                heroSubtitle: "The elite IoT development platform — now offering VIP access to the first innovators.",
+                heroCTA1: "Get VIP Access",
+                heroCTA2: "Explore Features",
+                featuresTitle: "More than an app. It's your AI-powered IoT command center.",
+                featuresSubtitle: "Smart ESP Premium gives you exclusive tools to build, monitor, and automate like never before.",
+                featureAI: "Gemini AI Integration",
+                featureAIDesc: "Instant code generation for 100+ components with AI-powered suggestions tailored to your project.",
+                featureSheets: "Real-Time Google Sheets Sync",
+                featureSheetsDesc: "No coding needed for data logging. Your sensor data appears in Sheets automatically.",
+                featureGmail: "Automated Gmail Alerts",
+                featureGmailDesc: "Get notified instantly when your sensors trigger specific conditions you define.",
+                featureWhatsApp: "WhatsApp & Cloud Integration",
+                featureWhatsAppDesc: "Share data with your team or clients with one tap through WhatsApp or cloud services.",
+                featureLibrary: "Exclusive Components Library",
+                featureLibraryDesc: "Access advanced sensors, actuators, and modules not available in the free version.",
+                featureLibraries: "Free Utility Libraries",
+                featureLibrariesDesc: "Premium libraries for ESP32 & ESP8266 included with your VIP access.",
+                videoTitle: "See Smart ESP Premium in Action",
+                videoSubtitle: "Watch how our VIP members are transforming their IoT projects",
+                offerTitle: "You're Among the First. Claim Your VIP Status.",
+                offerSubtitle: "Smart ESP Premium is normally $2/month. But for the first innovators, we're offering lifetime VIP access — completely free.",
+                offerIncluded: "What's Included in VIP Access:",
+                offerItem1: "Lifetime access to Smart ESP Premium (normally $2/month)",
+                offerItem2: "Exclusive ESP32 & ESP8266 utility libraries",
+                offerItem3: "Priority support and feature requests",
+                offerItem4: "Early access to new components and features",
+                offerRemaining: "VIP Spots Remaining:",
+                offerNote: "All you need is a VIP access code. (We've sent you one.)",
+                offerCTA: "Claim Your VIP Access Now",
+                envelopeFront: "Your VIP Access Code",
+                envelopeClick: "Click to reveal",
+                envelopeBackLabel: "Your exclusive code:",
+                envelopeBackNote: "Enter this code below to claim your VIP access",
+                testimonialsTitle: "What Our VIP Members Say",
+                testimonialsSubtitle: "Don't just take our word for it. Here's what our early adopters are saying.",
+                testimonialRole1: "Robotics Student",
+                testimonial1: `"I thought IoT was complex — until I got my VIP access. This is next-level. The AI code generation saved me weeks of work on my smart home project."`,
+                testimonialRole2: "Engineer",
+                testimonial2: `"The AI-generated code saved me 20 hours on my smart greenhouse project. The Google Sheets integration works flawlessly for data logging."`,
+                testimonialRole3: "Maker & Educator",
+                testimonial3: `"Feels like I'm using a tool from the future. My students are blown away by what we can build with Smart ESP Premium. Worth every penny (even though I got VIP access free!)."`,
+                downloadTitle: "Enter Your VIP Access Code",
+                downloadSubtitle: "Check your email or click the envelope above for your exclusive code.",
+                downloadLabel: "VIP Code",
+                downloadBtn: "Verify & Download",
+                downloadNoCode: "Don't have a code?",
+                downloadRequest: " to request an invitation.",
+                successTitle: "VIP Access Granted!",
+                successSubtitle: "Thank you for being an early adopter. Here are your downloads:",
+                successApp: "Smart ESP Premium (APK)",
+                successLib32: "ESP32 Utility Library (ZIP)",
+                successLib8266: "ESP8266 Utility Library (ZIP)",
+                successBonus: "Found this page through a friend? You both get a bonus library pack when they use your code.",
+                errorTitle: "Invalid VIP Code",
+                errorSubtitle: "The code you entered is invalid or has expired.",
+                errorBtn: "Try Again",
+                footerTagline: "The elite IoT development platform for innovators and makers.",
+                footerProducts: "Products",
+                footerProduct1: "Smart ESP Premium",
+                footerProduct2: "ESP32 Libraries",
+                footerProduct3: "ESP8266 Libraries",
+                footerFeatures: "Features",
+                footerFeature1: "Gemini AI Integration",
+                footerFeature2: "Google Sheets Sync",
+                footerFeature3: "Gmail Alerts",
+                footerFeature4: "WhatsApp Integration",
+                footerSupport: "Support",
+                footerContact: "Contact Us",
+                footerFAQ: "FAQ",
+                footerPrivacy: "Privacy Policy",
+                footerNote: "Smart ESP Premium is normally $2/month. This VIP offer is limited to early adopters."
+            },
+            fr: {
+                navFeatures: "Fonctionnalités",
+                navOffer: "Offre VIP",
+                navDownload: "Téléchargement",
+                navContact: "Contact",
+                heroTitle: "Bienvenue sur Smart ESP Premium",
+                heroSubtitle: "La plateforme d'élite pour le développement IoT — offre un accès VIP aux premiers innovateurs.",
+                heroCTA1: "Obtenir l'accès VIP",
+                heroCTA2: "Découvrir les fonctionnalités",
+                featuresTitle: "Plus qu'une application. C'est votre centre de commande IoT alimenté par l'IA.",
+                featuresSubtitle: "Smart ESP Premium vous offre des outils exclusifs pour construire, surveiller et automatiser comme jamais auparavant.",
+                featureAI: "Intégration IA Gemini",
+                featureAIDesc: "Génération instantanée de code pour plus de 100 composants avec des suggestions IA adaptées à votre projet.",
+                featureSheets: "Synchronisation Google Sheets en temps réel",
+                featureSheetsDesc: "Pas besoin de coder pour la journalisation des données. Vos données de capteur apparaissent automatiquement dans Sheets.",
+                featureGmail: "Alertes Gmail automatisées",
+                featureGmailDesc: "Recevez une notification instantanée lorsque vos capteurs déclenchent des conditions spécifiques.",
+                featureWhatsApp: "Intégration WhatsApp & Cloud",
+                featureWhatsAppDesc: "Partagez les données avec votre équipe ou vos clients en un clic via WhatsApp ou les services cloud.",
+                featureLibrary: "Bibliothèque de composants exclusive",
+                featureLibraryDesc: "Accédez à des capteurs, actionneurs et modules avancés non disponibles dans la version gratuite.",
+                featureLibraries: "Bibliothèques utilitaires gratuites",
+                featureLibrariesDesc: "Bibliothèques premium pour ESP32 & ESP8266 incluses avec votre accès VIP.",
+                videoTitle: "Voyez Smart ESP Premium en action",
+                videoSubtitle: "Découvrez comment nos membres VIP transforment leurs projets IoT",
+                offerTitle: "Vous faites partie des premiers. Réclamez votre statut VIP.",
+                offerSubtitle: "Smart ESP Premium coûte normalement 2 $/mois. Mais pour les premiers innovateurs, nous offrons un accès à vie — totalement gratuit.",
+                offerIncluded: "Ce qui est inclus dans l'accès VIP :",
+                offerItem1: "Accès à vie à Smart ESP Premium (normalement 2 $/mois)",
+                offerItem2: "Bibliothèques exclusives ESP32 & ESP8266",
+                offerItem3: "Support prioritaire et demandes de fonctionnalités",
+                offerItem4: "Accès anticipé aux nouveaux composants et fonctionnalités",
+                offerRemaining: "Places VIP restantes :",
+                offerNote: "Il vous suffit d'un code d'accès VIP. (Nous vous en avons envoyé un.)",
+                offerCTA: "Réclamez votre accès VIP maintenant",
+                envelopeFront: "Votre code d'accès VIP",
+                envelopeClick: "Cliquez pour révéler",
+                envelopeBackLabel: "Votre code exclusif :",
+                envelopeBackNote: "Entrez ce code ci-dessous pour réclamer votre accès VIP",
+                testimonialsTitle: "Ce que disent nos membres VIP",
+                testimonialsSubtitle: "Ne nous croyez pas sur parole. Voici ce que disent nos premiers utilisateurs.",
+                testimonialRole1: "Étudiante en robotique",
+                testimonial1: `"Je pensais que l'IoT était complexe — jusqu'à ce que j'obtienne mon accès VIP. C'est du niveau supérieur. La génération de code par IA m'a fait gagner des semaines sur mon projet de maison intelligente."`,
+                testimonialRole2: "Ingénieur",
+                testimonial2: `"Le code généré par l'IA m'a fait gagner 20 heures sur mon projet de serre intelligente. L'intégration Google Sheets fonctionne parfaitement pour la journalisation des données."`,
+                testimonialRole3: "Créateur et éducateur",
+                testimonial3: `"On dirait que j'utilise un outil du futur. Mes élèves sont bluffés par ce que nous pouvons construire avec Smart ESP Premium. Ça vaut chaque centime (même si j'ai eu un accès VIP gratuit !)."`,
+                downloadTitle: "Entrez votre code d'accès VIP",
+                downloadSubtitle: "Vérifiez votre e-mail ou cliquez sur l'enveloppe ci-dessus pour obtenir votre code exclusif.",
+                downloadLabel: "Code VIP",
+                downloadBtn: "Vérifier et télécharger",
+                downloadNoCode: "Vous n'avez pas de code ?",
+                downloadRequest: " Contactez-nous pour demander une invitation.",
+                successTitle: "Accès VIP accordé !",
+                successSubtitle: "Merci d'être un des premiers utilisateurs. Voici vos téléchargements :",
+                successApp: "Smart ESP Premium (APK)",
+                successLib32: "Bibliothèque utilitaire ESP32 (ZIP)",
+                successLib8266: "Bibliothèque utilitaire ESP8266 (ZIP)",
+                successBonus: "Vous avez trouvé cette page via un ami ? Vous obtenez tous les deux un pack de bibliothèque bonus quand il utilise votre code.",
+                errorTitle: "Code VIP invalide",
+                errorSubtitle: "Le code que vous avez saisi est invalide ou a expiré.",
+                errorBtn: "Réessayer",
+                footerTagline: "La plateforme d'élite pour le développement IoT, pour les innovateurs et les créateurs.",
+                footerProducts: "Produits",
+                footerProduct1: "Smart ESP Premium",
+                footerProduct2: "Bibliothèques ESP32",
+                footerProduct3: "Bibliothèques ESP8266",
+                footerFeatures: "Fonctionnalités",
+                footerFeature1: "Intégration IA Gemini",
+                footerFeature2: "Synchronisation Google Sheets",
+                footerFeature3: "Alertes Gmail",
+                footerFeature4: "Intégration WhatsApp",
+                footerSupport: "Support",
+                footerContact: "Nous contacter",
+                footerFAQ: "FAQ",
+                footerPrivacy: "Politique de confidentialité",
+                footerNote: "Smart ESP Premium coûte normalement 2 $/mois. Cette offre VIP est limitée aux premiers utilisateurs."
+            }
+        };
+
+        let currentLang = 'en';
+
+        document.getElementById('language-toggle').addEventListener('click', function() {
+            currentLang = currentLang === 'en' ? 'fr' : 'en';
+            updateLanguage();
+        });
+
+        function updateLanguage() {
+            const flagIcon = document.getElementById('lang-flag');
+            const langText = document.getElementById('lang-text');
+
+            if (currentLang === 'en') {
+                flagIcon.className = 'fas fa-flag-usa mr-1';
+                langText.textContent = 'EN';
+            } else {
+                flagIcon.className = 'fas fa-flag-fr mr-1';
+                langText.textContent = 'FR';
+            }
+
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[currentLang][key]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = translations[currentLang][key];
+                    } else {
+                        el.textContent = translations[currentLang][key];
+                    }
+                }
+            });
+        }
+
+        // Initialize language
+        updateLanguage();
+    </script>
+</body>
+</html>
